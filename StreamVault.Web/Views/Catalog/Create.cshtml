@@ -1,0 +1,12 @@
+﻿@using StreamVault.Web.ViewModels
+@model BasePropertiesForm
+@{
+    ViewData["Title"] = "Add content";
+}
+<div class="form-shell">
+    <h1>Add content</h1><p class="text-secondary">Add a title and the details relevant to its content type.</p>
+    <form asp-action="Create" method="post"><partial name="_Form" model="Model" /></form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" /><script src="~/js/content-form.js" asp-append-version="true"></script>
+}

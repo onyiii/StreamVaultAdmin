@@ -9,7 +9,7 @@ namespace StreamVault.Web.Services;
     {
         public async Task<IReadOnlyList<BaseProperties>> SearchAsync(string? search, ContentType? type)
         {
-            IQueryable<BaseProperties> query = db.baseProperties.AsNoTracking();
+            IQueryable<BaseProperties> query = db.ContentItems.AsNoTracking();
             if (!string.IsNullOrWhiteSpace(search))
             {
                 var term = search.Trim();
@@ -21,7 +21,7 @@ namespace StreamVault.Web.Services;
 
         public async Task<BasePropertiesForm?> GetFormAsync(int id)
         {
-            var item = await db.baseProperties.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+            var item = await db.ContentItems.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
             return item is null ? null : MapToForm(item);
         }
 
@@ -37,7 +37,7 @@ namespace StreamVault.Web.Services;
 
         public async Task<bool> UpdateAsync(int id, BasePropertiesForm form)
         {
-            var item = await db.baseProperties.SingleOrDefaultAsync(x => x.Id == id);
+            var item = await db.ContentItems.SingleOrDefaultAsync(x => x.Id == id);
             if (item is null || item.Type != form.Type) return false;
             item.UpdateCommonFields(form);
             item.UpdateSpecificFields(form);
@@ -46,11 +46,11 @@ namespace StreamVault.Web.Services;
         }
 
         public Task<BaseProperties?> FindAsync(int id) =>
-            db.baseProperties.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
+            db.ContentItems.AsNoTracking().SingleOrDefaultAsync(x => x.Id == id);
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var item = await db.baseProperties.FindAsync(id);
+            var item = await db.ContentItems.FindAsync(id);
             if (item is null) return false;
             db.Remove(item);
             await db.SaveChangesAsync();

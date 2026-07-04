@@ -9,8 +9,9 @@ namespace StreamVault.Web.Data;
             {
                 await using var scope = services.CreateAsyncScope();
                 var db = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-                await db.Database.EnsureCreatedAsync();
-                if (await db.baseProperties.AnyAsync()) return;
+        //await db.Database.EnsureDeletedAsync();
+        await db.Database.EnsureCreatedAsync();
+                if (await db.ContentItems.AnyAsync()) return;
                 db.AddRange(
                     new Movie { Title = "Off Campus", Description = "Love dynamics of a group of Briar University students.", ReleaseDate = new(2024, 5, 17), AgeRating = AgeRating.Teen, Genre = "Science Fiction", DurationMinutes = 128, Director = "Maya Chen" },
                     new Series { Title = "Big Bang Theory", Description = "A balance of science, humor and friendship", ReleaseDate = new(2023, 9, 8), AgeRating = AgeRating.ParentalGuidance, Genre = "Drama", NumberOfSeasons = 3, TotalEpisodes = 24 },

@@ -1,0 +1,11 @@
+﻿@using StreamVault.Web.Models
+
+@model BaseProperties
+@{
+    ViewData["Title"] = "Delete content";
+}
+<div class="form-shell">
+    <h1>Delete content</h1><div class="alert alert-warning">This permanently removes the item from the catalogue.</div>
+    <dl class="row"><dt class="col-sm-3">Title</dt><dd class="col-sm-9">@Model.Title</dd><dt class="col-sm-3">Type</dt><dd class="col-sm-9">@Model.Type</dd><dt class="col-sm-3">Details</dt><dd class="col-sm-9">@Model.Details</dd></dl>
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post"><button class="btn btn-danger">Delete</button> <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a></form>
+</div>

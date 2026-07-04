@@ -1,0 +1,13 @@
+﻿@using StreamVault.Web.ViewModels
+
+@model BasePropertiesForm
+@{
+    ViewData["Title"] = "Edit content";
+}
+<div class="form-shell">
+    <h1>Edit content</h1><p class="text-secondary">Update the catalogue information below.</p>
+    <form asp-action="Edit" asp-route-id="@Model.Id" method="post"><partial name="_Form" model="Model" /></form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" /><script src="~/js/content-form.js" asp-append-version="true"></script>
+}

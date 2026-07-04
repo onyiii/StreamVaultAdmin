@@ -32,7 +32,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Catalog}/{action=Index}/{id?}")
     .WithStaticAssets();
-
+await DatabaseInitializer.InitializeAsync(app.Services);
 
 app.Run();
 
