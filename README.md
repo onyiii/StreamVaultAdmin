@@ -293,13 +293,17 @@ If additional time were available, I would:
 
 2\. Add authentication and role-based authorization.
 
-3\. Implement pagination, filtering, and search.
+3\. Implement pagination.
 
-4\. Add API endpoints alongside MVC pages.
+4\. Add logging and error handling.
 
-5\. Improve logging and error handling.
+5\. Enhance the UI with a more modern responsive design.
 
-6\. Enhance the UI with a more modern responsive design.
+6\. Introduce dedicated view models per content type.
+
+7\. Potentially use the clean code architecture.
+
+
 
 
 

@@ -9,7 +9,7 @@ namespace StreamVault.Web.Data;
             {
                 await using var scope = services.CreateAsyncScope();
                 var db = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-        //await db.Database.EnsureDeletedAsync();
+        
         await db.Database.EnsureCreatedAsync();
                 if (await db.ContentItems.AnyAsync()) return;
                 db.AddRange(
