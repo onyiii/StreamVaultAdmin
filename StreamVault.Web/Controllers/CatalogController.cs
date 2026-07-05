@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using StreamVault.Web.Models;
 using StreamVault.Web.Services;
 using StreamVault.Web.ViewModels;
-namespace StreamVaultAdmin.Web.Controllers;
+namespace StreamVault.Web.Controllers;
 
 public sealed class CatalogController(ICatalogService catalog) : Controller
 {

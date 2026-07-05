@@ -13,7 +13,8 @@ namespace StreamVault.Web.Services;
             if (!string.IsNullOrWhiteSpace(search))
             {
                 var term = search.Trim();
-                query = query.Where(item => item.Title.Contains(term));
+                var pattern = $"%{EscapeLikePattern(term)}%";
+                query = query.Where(item => EF.Functions.Like(item.Title, pattern, "\\"));
             }
             if (type is not null) query = FilterByType(query, type.Value);
             return await query.OrderBy(item => item.Title).ToListAsync();
@@ -74,6 +75,9 @@ namespace StreamVault.Web.Services;
             ContentType.MusicAlbum => query.OfType<MusicAlbum>(),
             _ => query
         };
+
+        private static string EscapeLikePattern(string value) =>
+            value.Replace("\\", "\\\\").Replace("%", "\\%").Replace("_", "\\_");
 
         private static BasePropertiesForm MapToForm(BaseProperties item)
         {
