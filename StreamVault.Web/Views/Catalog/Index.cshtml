@@ -29,17 +29,43 @@ else
             <tbody>
                 @foreach (var item in Model.Items)
                 {
-                    <tr>
+                    <tr class="clickable-row"
+                        data-url="@Url.Action("Edit", new { id = item.Id })">
                         <td><strong>@item.Title</strong><div class="small text-secondary text-truncate description">@item.Description</div></td>
                         <td><span class="badge text-bg-secondary">@item.Type.ToString().Replace("MusicAlbum", "Music album")</span></td>
                         <td>@item.Genre</td>
                         <td>@item.ReleaseDate.ToString("dd MMM yyyy")</td>
                         <td class="small">@item.Details</td>
-                        <td class="text-end text-nowrap"><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Edit</a> <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a></td>
+                        @* <td class="text-end text-nowrap"><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">Edit</a> <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">Delete</a></td> *@
+                        <td class="text-end text-nowrap">
+                            <a asp-action="Edit"
+                               asp-route-id="@item.Id"
+                               onclick="event.stopPropagation();"
+                               class="btn btn-sm btn-outline-primary">
+                                Edit
+                            </a>
+
+                            <a asp-action="Delete"
+                               asp-route-id="@item.Id"
+                               onclick="event.stopPropagation();"
+                               class="btn btn-sm btn-outline-danger">
+                                Delete
+                            </a>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+}
+@section Scripts
+{
+    <script>
+        document.querySelectorAll('.clickable-row').forEach(row => {
+            row.addEventListener('click', function () {
+                window.location.href = this.dataset.url;
+            });
+        });
+    </script>
 }
 
