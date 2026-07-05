@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace StreamVault.Web.ViewModels;
 
 
-   public sealed class BasePropertiesForm : IValidatableObject
+   public class BasePropertiesForm : IValidatableObject
     {
         public int? Id { get; set; }
         [Display(Name = "Content type")] public ContentType Type { get; set; }

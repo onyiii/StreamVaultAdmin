@@ -4,7 +4,7 @@ using StreamVault.Web.Services;
 using StreamVault.Web.ViewModels;
 namespace StreamVault.Web.Controllers;
 
-public sealed class CatalogController(ICatalogService catalog) : Controller
+public class CatalogController(ICatalogService catalog) : Controller
 {
     public async Task<IActionResult> Index(string? search, ContentType? type) =>
         View(new CatalogIndexViewModel(await catalog.SearchAsync(search, type), search?.Trim() ?? "", type));
